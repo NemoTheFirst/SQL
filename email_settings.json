@@ -1,0 +1,7 @@
+{
+  "smtp_server": "",
+  "smtp_port": "",
+  "sender_email": "",
+  "sender_password": "",
+  "recipient_email": ""
+}

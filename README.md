@@ -1,4 +1,5 @@
 # SQL
+This is a normal text with a <span style="font-size: larger;">bigger</span> word.
 
 Server Quality Lab (SQL)
 

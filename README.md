@@ -1,11 +1,11 @@
 # SQL
 
-Server Quality Lab (SQL)
+## Server Quality Lab (SQL)
 
 Server Quality Lab (SQL) is a lightweight, yet powerful Python script designed to provide seamless monitoring and alerting for server performance. Whether you're a system administrator or a casual server enthusiast, SQL's got you covered.
 
 
-Features
+### Features
 Efficient Logging: Utilize advanced logging techniques to keep track of server events. All logs are neatly stored in the "App.log" file for easy reference.
 
 Email Notifications: Receive instant email alerts when CPU or RAM usage surpasses predefined thresholds. Gmail users can seamlessly integrate their accounts for secure communication.

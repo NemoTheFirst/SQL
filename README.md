@@ -20,3 +20,13 @@ Dynamic Settings: Easily customize email parameters, set logging levels, and cle
 Threaded Performance: Benefit from multiple threads running concurrently, ensuring smooth and responsive server monitoring.
 
 Casual Daemon Mode: Activate daemon mode for continuous, background monitoring. Simply uncomment the relevant code section for effortless operation. (not working)
+
+
+###run
+you gotta fill the 
+  "smtp_server": "",
+  "smtp_port": "",
+  "sender_email": "",
+  "sender_password": "",
+  "recipient_email": ""
+in either the .json file or the monitor.py

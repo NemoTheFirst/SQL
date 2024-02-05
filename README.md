@@ -19,4 +19,4 @@ Dynamic Settings: Easily customize email parameters, set logging levels, and cle
 
 Threaded Performance: Benefit from multiple threads running concurrently, ensuring smooth and responsive server monitoring.
 
-Casual Daemon Mode: Activate daemon mode for continuous, background monitoring. Simply uncomment the relevant code section for effortless operation.
+Casual Daemon Mode: Activate daemon mode for continuous, background monitoring. Simply uncomment the relevant code section for effortless operation. (not working)

@@ -22,7 +22,7 @@ Threaded Performance: Benefit from multiple threads running concurrently, ensuri
 Casual Daemon Mode: Activate daemon mode for continuous, background monitoring. Simply uncomment the relevant code section for effortless operation. (not working)
 
 
-###run
+### run
 you gotta fill the 
   "smtp_server": "",
   "smtp_port": "",

@@ -212,9 +212,9 @@ def edit_static_password():
             with open('email_settings.json', 'r+') as json_file:
                 settings = json.load(json_file)
                 settings['static_password'] = new_password
-                json_file.seek(0)  # Reset file pointer to the beginning of the file
+                json_file.seek(0)  
                 json.dump(settings, json_file, indent=4)
-                json_file.truncate()  # Remove any remaining part of the old content
+                json_file.truncate()  
             static_password_window.destroy()
             logging.info("Static password updated successfully.")
         else:

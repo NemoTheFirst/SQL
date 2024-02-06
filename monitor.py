@@ -20,16 +20,27 @@ sender_password ='' #If its gmial use key :)
 recipient_email =''
 smpt_port = ''
 smpt_server = ''
-STATIC_PASSWORD = "" #LoginPass
-maxcpu = 75 #for cpu high usage alert
+STATIC_PASSWORD = '' #LoginPass
+maxcpu = 1 #for cpu high usage alert
 maxram = 75 #for RAM high usage alert
 
 
 logging.basicConfig(filename='App.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def load_new_setting():
-    with open('email_settings.json', 'r') as json_file:
-        return json.load(json_file)
+    global sender_email, sender_password, recipient_email, smpt_port, smpt_server, STATIC_PASSWORD
+    try:
+        with open('email_settings.json', 'r') as json_file:
+            settings = json.load(json_file)
+            sender_email = settings['sender_email']
+            sender_password = settings['sender_password']
+            recipient_email = settings['recipient_email']
+            smpt_port = settings['smtp_port']
+            smpt_server = settings['smtp_server']
+            STATIC_PASSWORD = settings['static_password']
+            logging.info(f"Settings loaded: {settings}")
+    except Exception as e:
+        logging.error(f"Failed to load settings: {e}")
 
 def send_email(subject, body, sender_email, sender_password, recipient_email):
     try:
@@ -192,6 +203,33 @@ def save_email_settings():
     logging.info(f"Email settings updated: {settings}")
     email_settings_window.destroy()
 
+def edit_static_password():
+    def save_new_static_password():
+        global STATIC_PASSWORD
+        new_password = new_password_entry.get()
+        if new_password:
+            STATIC_PASSWORD = new_password
+            with open('email_settings.json', 'r+') as json_file:
+                settings = json.load(json_file)
+                settings['static_password'] = new_password
+                json_file.seek(0)  # Reset file pointer to the beginning of the file
+                json.dump(settings, json_file, indent=4)
+                json_file.truncate()  # Remove any remaining part of the old content
+            static_password_window.destroy()
+            logging.info("Static password updated successfully.")
+        else:
+            messagebox.showerror("Error", "New password cannot be empty.")
+
+    static_password_window = tk.Toplevel(window)
+    static_password_window.title("Edit Static Password")
+
+    tk.Label(static_password_window, text="New Static Password:").pack()
+
+    new_password_entry = tk.Entry(static_password_window, show="*", width=20)
+    new_password_entry.pack()
+
+    tk.Button(static_password_window, text="Save", command=save_new_static_password).pack()
+
 def settings_window():
     settings_window = tk.Toplevel(window)
     settings_window.title("Settings")
@@ -199,6 +237,9 @@ def settings_window():
 
     edit_email_settings_button = tk.Button(settings_window, text="Edit Email Settings", command=edit_email_settings, font=("Helvetica", 12))
     edit_email_settings_button.pack(pady=10)
+
+    edit_static_password_button = tk.Button(settings_window, text="Edit Static Pass", command=edit_static_password, font=("Helvetica", 12))
+    edit_static_password_button.pack(pady=10)
 
     show_system_info_button = tk.Button(settings_window, text="Show System Info", command=show_system_info, font=("Helvetica", 12))
     show_system_info_button.pack(pady=10)
@@ -256,4 +297,5 @@ def open_main_window():
 #deamon mode IF i (remembered)
 
 if __name__ == "__main__":
+    load_new_setting()
     show_login_window()
